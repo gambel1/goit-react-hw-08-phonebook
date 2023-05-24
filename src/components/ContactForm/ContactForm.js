@@ -1,5 +1,5 @@
-import { selectContacts } from 'redux/selectors';
-import { addContacts } from 'api/api';
+import { selectContacts } from 'redux/contacts/selectors';
+import { addContacts } from 'redux/contacts/operations';
 import {
   FormContainer,
   FormWrapper,

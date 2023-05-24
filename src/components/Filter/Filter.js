@@ -1,5 +1,5 @@
-import { selectFilter } from 'redux/selectors';
-import { filterContacts } from 'redux/contactsAsyncThunk';
+import { selectFilter } from 'redux/contacts/selectors';
+import { filterContacts } from 'redux/contacts/contactsAsyncThunk';
 import { FilterWrapper, FilterLabel, FilterInput } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
 

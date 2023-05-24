@@ -1,5 +1,5 @@
-import { selectFilter, selectContacts } from 'redux/selectors';
-import { deleteContacts } from 'api/api';
+import { selectFilter, selectContacts } from 'redux/contacts/selectors';
+import { deleteContacts } from 'redux/contacts/operations';
 
 import {
   ContactListUl,
