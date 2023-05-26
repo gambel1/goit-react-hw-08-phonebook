@@ -1,8 +1,9 @@
 import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
+import Loader from 'components/Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoading } from 'redux/contacts/selectors';
+import { selectError, selectIsLoading } from 'redux/contacts/selectors';
 import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/operations';
@@ -10,6 +11,7 @@ import { fetchContacts } from 'redux/contacts/operations';
 export default function Contacts() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -22,8 +24,9 @@ export default function Contacts() {
       </Helmet>
       <ContactForm />
       <Filter />
+      {isError && <p>{isError}</p>}
+      {isLoading && <Loader />}
 
-      <div>{isLoading && 'Request in progress...'}</div>
       <ContactList />
     </>
   );

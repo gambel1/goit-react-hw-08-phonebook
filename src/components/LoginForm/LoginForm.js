@@ -1,31 +1,33 @@
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
-import { Formik, ErrorMessage, Form } from 'formik';
+import { Formik, ErrorMessage, Form, Field } from 'formik';
 import * as yup from 'yup';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 const schema = yup.object().shape({
-  name: yup.string().min(2).max(70).required(),
-  number: yup.number().min(4).required(),
+  email: yup.string().email('Invalid email address').required('Required'),
+  password: yup.string().min(4).required(),
 });
 
 const initialValues = {
-  name: '',
-  number: '',
+  email: '',
+  password: '',
 };
 
 export default function LoginForm() {
   const dispatch = useDispatch();
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const form = event.currentTarget;
+  const handleSubmit = (values, { resetForm }) => {
     dispatch(
       logIn({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
+        email: values.email,
+        password: values.password,
       })
     );
-    form.reset();
+
+    resetForm();
   };
 
   return (
@@ -37,18 +39,21 @@ export default function LoginForm() {
       >
         <Form>
           <div>
-            <label>Email</label>
-            <input name="email" type="email" />
+            <label htmlFor="email">Email</label>
+            <Field name="email" type="email" placeholder="email" />
             <ErrorMessage name="email" />
           </div>
 
           <div>
-            <label>Password</label>
-            <input name="password" type="password" />
+            <label htmlFor="password">Password</label>
+            <Field name="password" type="password" placeholder="password" />
             <ErrorMessage name="password" />
           </div>
 
-          <button type="submit">Log In</button>
+          {/* <button type="submit">Log In</button> */}
+          <Button type="submit" variant="contained">
+            Log In
+          </Button>
         </Form>
       </Formik>
     </>

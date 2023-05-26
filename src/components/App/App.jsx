@@ -5,7 +5,7 @@
 // import { AppContainer, AppTitle } from './App.styled';
 import Layout from 'components/Layout/Layout';
 // import { selectError, selectIsLoading } from 'redux/contacts/selectors';
-// import { fetchContacts } from 'redux/contacts/operations';
+import { fetchContacts } from 'redux/contacts/operations';
 import { useDispatch } from 'react-redux';
 import { lazy, useEffect } from 'react';
 import { useAuth } from 'hooks/useAuth';
@@ -25,9 +25,9 @@ export default function App() {
   // const isLoading = useSelector(selectIsLoading);
   const { isRefreshing } = useAuth;
 
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -60,20 +60,8 @@ export default function App() {
             <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
           }
         />
+        <Route path="*" element={<HomePage/>} />
       </Route>
     </Routes>
   );
-  // <AppContainer>
-  //   <div>
-  //     <AppTitle>Phonebook</AppTitle>
-  //     <ContactForm />
-  //   </div>
-  //   <div>
-  //     <AppTitle>Contacts</AppTitle>
-  //     <Filter />
-  //     {isError && <p>{isError}</p>}
-  //     {isLoading && <Loader />}
-  //     {!isLoading && <ContactsList />}
-  //   </div>
-  // </AppContainer>
 }
