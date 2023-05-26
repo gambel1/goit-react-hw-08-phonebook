@@ -1,20 +1,20 @@
 import { register } from 'redux/auth/operations';
 // import { ErrorMessage, Form, Formik, Field } from 'formik';
 import { useDispatch } from 'react-redux';
-import * as yup from 'yup';
+// import * as yup from 'yup';
 import Button from '@mui/material/Button';
 
-const schema = yup.object().shape({
-  name: yup.string().min(2).max(70).required(),
-  email: yup.string().email('Invalid email address').required('Required'),
-  password: yup.string().min(4).required(),
-});
+// const schema = yup.object().shape({
+//   name: yup.string().min(2).max(70).required(),
+//   email: yup.string().email('Invalid email address').required('Required'),
+//   password: yup.string().min(4).required(),
+// });
 
-const initialValues = {
-  username: '',
-  email: '',
-  password: '',
-};
+// const initialValues = {
+//   username: '',
+//   email: '',
+//   password: '',
+// };
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
