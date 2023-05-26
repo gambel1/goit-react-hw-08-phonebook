@@ -1,4 +1,5 @@
 import { register } from 'redux/auth/operations';
+import { Form } from './RegisterForm.styled';
 // import { ErrorMessage, Form, Formik, Field } from 'formik';
 import { useDispatch } from 'react-redux';
 // import * as yup from 'yup';
@@ -30,7 +31,6 @@ export default function RegisterForm() {
         password: form.elements.password.value,
       })
     );
-    form.reset();
   };
 
   // const handleSubmit = (values, { resetForm }) => {
@@ -76,7 +76,7 @@ export default function RegisterForm() {
   // );
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <label>
         Username
         <input type="text" name="name" />
@@ -93,6 +93,6 @@ export default function RegisterForm() {
       <Button type="submit" variant="contained">
         Register
       </Button>
-    </form>
+    </Form>
   );
 }

@@ -1,9 +1,9 @@
-import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
+import { useDispatch } from 'react-redux';
 import { Formik, ErrorMessage, Form, Field } from 'formik';
 import * as yup from 'yup';
-import Button from '@mui/material/Button';
 
+import Button from '@mui/material/Button';
 
 const schema = yup.object().shape({
   email: yup.string().email('Invalid email address').required('Required'),
@@ -18,15 +18,13 @@ const initialValues = {
 export default function LoginForm() {
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = values => {
     dispatch(
       logIn({
         email: values.email,
         password: values.password,
       })
     );
-
-    resetForm();
   };
 
   return (
@@ -49,7 +47,6 @@ export default function LoginForm() {
             <ErrorMessage name="password" />
           </div>
 
-          {/* <button type="submit">Log In</button> */}
           <Button type="submit" variant="contained">
             Log In
           </Button>
