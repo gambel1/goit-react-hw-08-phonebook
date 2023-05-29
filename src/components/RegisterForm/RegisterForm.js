@@ -1,98 +1,73 @@
 import { register } from 'redux/auth/operations';
-import { Form } from './RegisterForm.styled';
-// import { ErrorMessage, Form, Formik, Field } from 'formik';
 import { useDispatch } from 'react-redux';
-// import * as yup from 'yup';
-import Button from '@mui/material/Button';
-
-// const schema = yup.object().shape({
-//   name: yup.string().min(2).max(70).required(),
-//   email: yup.string().email('Invalid email address').required('Required'),
-//   password: yup.string().min(4).required(),
-// });
-
-// const initialValues = {
-//   username: '',
-//   email: '',
-//   password: '',
-// };
+import { Button, Checkbox, Form, Input } from 'antd';
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const form = event.currentTarget;
-
+  const handleSubmit = values => {
     dispatch(
       register({
-        name: form.elements.name.value,
-        email: form.elements.email.value,
-        password: form.elements.password.value,
+        name: values.username,
+        email: values.email,
+        password: values.password,
       })
     );
   };
 
-  // const handleSubmit = (values, { resetForm }) => {
-  //   dispatch(
-  //     register({
-  //       name: values.username,
-  //       email: values.email,
-  //       password: values.password,
-  //     })
-  //   );
-
-  //   resetForm();
-  // };
-
-  // return (
-  //   <Formik
-  //     initialValues={initialValues}
-  //     validationSchema={schema}
-  //     onSubmit={handleSubmit}
-  //   >
-  //     <Form>
-  //       <div>
-  //         <label htmlFor="name">Username</label>
-  //         <Field type="text" name="name" placeholder="username" />
-  //         <ErrorMessage name="name" />
-  //       </div>
-  //       <div>
-  //         <label htmlFor="email">Email</label>
-  //         <Field type="email" name="email" placeholder="email" />
-  //         <ErrorMessage name="email" />
-  //       </div>
-  //       <div>
-  //         <label htmlFor="password">Password</label>
-  //         <Field type="password" name="password" placeholder="password" />
-  //         <ErrorMessage name="password" />
-  //       </div>
-  //       {/* <button type="submit">Register</button> */}
-  //       <Button type="submit" variant="contained">
-  //         Register
-  //       </Button>
-  //     </Form>
-  //   </Formik>
-  // );
+  // Ant Design library
+  const onFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo);
+  };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <label>
-        Username
-        <input type="text" name="name" />
-      </label>
-      <label>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label>
-        Password
-        <input type="password" name="password" />
-      </label>
-      {/* <button type="submit">Register</button> */}
-      <Button type="submit" variant="contained">
-        Register
-      </Button>
+    <Form
+      name="basic"
+      labelCol={{ span: 8 }}
+      wrapperCol={{ span: 16 }}
+      style={{ maxWidth: 600 }}
+      initialValues={{ remember: true }}
+      onFinish={handleSubmit}
+      onFinishFailed={onFinishFailed}
+      autoComplete="on"
+    >
+      <Form.Item
+        label="Username"
+        name="username"
+        rules={[{ required: true, message: 'Please input your username!' }]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="Email"
+        name="email"
+        rules={[{ required: true, message: 'Please input your email!' }]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="Password"
+        name="password"
+        rules={[{ required: true, message: 'Please input your password!' }]}
+      >
+        <Input.Password />
+      </Form.Item>
+
+      <Form.Item
+        name="remember"
+        valuePropName="checked"
+        wrapperCol={{ offset: 8, span: 16 }}
+      >
+        <Checkbox>Remember me</Checkbox>
+      </Form.Item>
+
+      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Button type="primary" htmlType="submit">
+          Register
+        </Button>
+      </Form.Item>
     </Form>
   );
 }

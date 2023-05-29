@@ -1,19 +1,6 @@
 import { logIn } from 'redux/auth/operations';
 import { useDispatch } from 'react-redux';
-import { Formik, ErrorMessage, Form, Field } from 'formik';
-import * as yup from 'yup';
-
-import Button from '@mui/material/Button';
-
-const schema = yup.object().shape({
-  email: yup.string().email('Invalid email address').required('Required'),
-  password: yup.string().min(4).required(),
-});
-
-const initialValues = {
-  email: '',
-  password: '',
-};
+import { Button, Checkbox, Form, Input } from 'antd';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -27,9 +14,55 @@ export default function LoginForm() {
     );
   };
 
+  // Ant Design library
+  const onFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo);
+  };
+
   return (
     <>
-      <Formik
+      <Form
+        name="basic"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        style={{ maxWidth: 600 }}
+        initialValues={{ remember: true }}
+        onFinish={handleSubmit}
+        onFinishFailed={onFinishFailed}
+        autoComplete="on"
+      >
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: 'Please input your email!' }]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: 'Please input your password!' }]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item
+          name="remember"
+          valuePropName="checked"
+          wrapperCol={{ offset: 8, span: 16 }}
+        >
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="primary" htmlType="submit">
+            Log In
+          </Button>
+        </Form.Item>
+      </Form>
+
+      {/* <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={schema}
@@ -51,7 +84,7 @@ export default function LoginForm() {
             Log In
           </Button>
         </Form>
-      </Formik>
+      </Formik> */}
     </>
   );
 }
