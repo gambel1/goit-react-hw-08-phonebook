@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 
 export const ContactListUl = styled.ul`
+  width: 400px;
   list-style: none;
-  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
   padding: 0;
   display: flex;
   flex-direction: column;

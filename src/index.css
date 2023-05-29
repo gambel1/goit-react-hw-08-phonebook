@@ -2,30 +2,54 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color:#ceb89f
+  background-color: #ceb89f;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+
+@media screen and (min-width: 480px /*от 480px и выше*/) {
+    width: 480px;
+    }
+
+@media screen and (min-width: 768px /*от 768px и выше*/) {
+    width: 768px;
+    }
+
+@media screen and (min-width: 1200px /*от 1200px и выше*/) {
+    width: 1200px;
+    }
 }
 
 p,
+a,
 h1,
 h2,
-ul {
+ul,
+li {
   margin: 0;
   padding: 0;
   list-style: none;
+  text-decoration: none;
 }
 
 /* variebles */
-:root{
+:root {
   --font-size-subtitle: 24px;
   --font-size-buttons: 16px;
   --border-margin-padding: 5px;
 }
-

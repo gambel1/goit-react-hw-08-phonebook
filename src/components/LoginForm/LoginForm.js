@@ -30,6 +30,7 @@ export default function LoginForm() {
         onFinish={handleSubmit}
         onFinishFailed={onFinishFailed}
         autoComplete="on"
+        className='container'
       >
         <Form.Item
           label="Email"

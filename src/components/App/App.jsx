@@ -14,10 +14,10 @@ import { Route, Routes } from 'react-router-dom';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { PrivateRoute } from 'components/PrivateRoute';
 
-const HomePage = lazy(() => import('../../pages/Home'));
-const RegisterPage = lazy(() => import('../../pages/Register'));
-const LoginPage = lazy(() => import('../../pages/Login'));
-const ContactsPage = lazy(() => import('../../pages/Contacts'));
+const HomePage = lazy(() => import('../../pages/Home/Home'));
+const RegisterPage = lazy(() => import('../../pages/Register/Register'));
+const LoginPage = lazy(() => import('../../pages/Login/Login'));
+const ContactsPage = lazy(() => import('../../pages/Contacts/Contacts'));
 
 export default function App() {
   const dispatch = useDispatch();
