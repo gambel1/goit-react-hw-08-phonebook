@@ -40,7 +40,7 @@ export default function ContactForm() {
   };
 
   return (
-    <>
+    <div>
       <Formik
         initialValues={initialValues}
         onSubmit={handleFormSubmit}
@@ -62,6 +62,6 @@ export default function ContactForm() {
           <FormButton type="submit">Add contact</FormButton>
         </FormContainer>
       </Formik>
-    </>
+    </div>
   );
 }

@@ -19,13 +19,15 @@ export default function ContactList() {
   );
 
   return (
-    <>
+    <div>
       <ContactListUl>
         {filteredContacts.map(({ id, name, number }) => {
           return (
             <ContactListLi key={id}>
-              <ContactListSpan>{name}</ContactListSpan>
-              <ContactListSpan>{number}</ContactListSpan>
+              <div className="box" style={{ display: 'flex', gap: '10px' }}>
+                <ContactListSpan>{name}</ContactListSpan>
+                <ContactListSpan>{number}</ContactListSpan>
+              </div>
               <ContactListButton
                 type="button"
                 onClick={() => dispatch(deleteContacts(id))}
@@ -36,6 +38,6 @@ export default function ContactList() {
           );
         })}
       </ContactListUl>
-    </>
+    </div>
   );
 }

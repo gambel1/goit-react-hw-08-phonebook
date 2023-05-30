@@ -2,11 +2,12 @@ import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
 import Loader from 'components/Loader/Loader';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectError, selectIsLoading } from 'redux/contacts/selectors';
+import { fetchContacts } from 'redux/contacts/operations';
+import { Main } from './Contacts.styled';
+import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/contacts/operations';
 
 export default function Contacts() {
   const dispatch = useDispatch();
@@ -22,12 +23,14 @@ export default function Contacts() {
       <Helmet>
         <title>Your contacts</title>
       </Helmet>
-      <ContactForm />
-      <Filter />
-      {isError && <p>{isError}</p>}
-      {isLoading && <Loader />}
+      <Main className="container">
+        <ContactForm />
+        <Filter />
+        {isError && <p>{isError}</p>}
+        {isLoading && <Loader />}
 
-      <ContactList />
+        <ContactList />
+      </Main>
     </>
   );
 }

@@ -1,10 +1,4 @@
-// import ContactForm from '../ContactForm/ContactForm';
-// import ContactsList from '../ContactList/ContactList';
-// import Filter from '../Filter/Filter';
-// import Loader from '../Loader/Loader';
-// import { AppContainer, AppTitle } from './App.styled';
 import Layout from 'components/Layout/Layout';
-// import { selectError, selectIsLoading } from 'redux/contacts/selectors';
 import { fetchContacts } from 'redux/contacts/operations';
 import { useDispatch } from 'react-redux';
 import { lazy, useEffect } from 'react';
@@ -21,8 +15,6 @@ const ContactsPage = lazy(() => import('../../pages/Contacts/Contacts'));
 
 export default function App() {
   const dispatch = useDispatch();
-  // const isError = useSelector(selectError);
-  // const isLoading = useSelector(selectIsLoading);
   const { isRefreshing } = useAuth;
 
   useEffect(() => {
@@ -60,7 +52,7 @@ export default function App() {
             <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
           }
         />
-        <Route path="*" element={<HomePage/>} />
+        <Route path="*" element={<HomePage />} />
       </Route>
     </Routes>
   );
